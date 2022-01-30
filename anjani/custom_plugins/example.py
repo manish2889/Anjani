@@ -18,7 +18,7 @@ import asyncio
 import io
 from typing import IO, Any, ClassVar, MutableMapping
 
-from aiopath import PureAsyncPosixPath
+from aiopath import AsyncPurePosixPath
 from pyrogram.types import CallbackQuery, Message
 
 from anjani import command, filters, listener, plugin, util
@@ -110,7 +110,7 @@ class ExamplePlugin(plugin.Plugin):
         # unnamed file that doesn't render as media in clients.
         # We abuse aiopath to extract the filename section here for convenience, since URLs are *mostly* POSIX paths
         # with the exception of the protocol part, which we don't care about here.
-        cat_stream.name = PureAsyncPosixPath(cat_url).name
+        cat_stream.name = AsyncPurePosixPath(cat_url).name
 
         return cat_stream
 
