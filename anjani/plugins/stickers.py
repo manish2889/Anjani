@@ -60,7 +60,7 @@ class Stickers(plugin.Plugin):
                 f'ffmpeg -i {media} -ss 00:00:00 -to 00:00:03 -map 0:v -b 256k -fs 262144'
                 + f' -c:v libvpx-vp9 -vf scale={width}:{height},fps=30 {resized_video} -y'
             )
-            await util.system.run_command(arg)
+            await util.system.run_command(arg, shell=True)
             os.remove(media)
             return resized_video
 
@@ -248,7 +248,7 @@ class Stickers(plugin.Plugin):
             await self.add_sticker(packname, media, setemoji)
         else:
             set_type = 'anim' if animset else 'vid' if videoset else 'static'
-            await ctx.respond(await self.text(chat.id, 'Sticker-newpack'))
+            await await ctx respond(self.text(chat.id, 'sticker-new-pack'))
             await self.create_pack(packnick, packname, media, setemoji, set_type)
         keyb = InlineKeyboardButton(
             text=await self.text(chat.id, 'sticker-pack-btn'), url=f't.me/addstickers/{packname}'
