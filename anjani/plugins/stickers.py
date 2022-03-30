@@ -194,7 +194,7 @@ class Stickers(plugin.Plugin):
                 packnum: int = ctx.input[0]
             emojiset = ctx.input[0]
 
-        if emojiset:
+        if emojiset is not None:
             setas = set_emoji
             for i in emojiset:
                 if i and i in (
@@ -203,7 +203,7 @@ class Stickers(plugin.Plugin):
                     set_emoji += i
                 if setas and setas != set_emoji:
                     set_emoji = set_emoji[len(setas) :]
-        else:
+        if not emojiset:
             set_emoji = '🤔'
         authname = ctx.author.username or ctx.author.id
         packname: str = f'a{ctx.author.id}_Anjani_{packnum}'
