@@ -243,6 +243,7 @@ class Stickers(plugin.Plugin):
                     await ctx.respond(
                         await self.text(chat.id, 'sticker-pack-insufficient', packnum)
                     )
+                    packname += f'_by_{self.bot.user.username}'
                     continue
                 break
         if hasexist:
