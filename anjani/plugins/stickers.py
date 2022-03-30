@@ -59,7 +59,7 @@ class Stickers(plugin.Plugin):
                 f'ffmpeg -i {media} -ss 00:00:00 -to 00:00:03 -map 0:v -b 256k -fs 262144'
                 + f' -c:v libvpx-vp9 -vf scale={width}:{height},fps=30 {_video} -y'
             )
-            await util.system.run_command(arg, shell=True) # skipcq: BAN-B604
+            await util.system.run_command(arg, shell=True)   # skipcq: BAN-B604
             os.remove(media)
             return _video
 
@@ -192,7 +192,8 @@ class Stickers(plugin.Plugin):
         elif len(args) == 1:
             if ctx.input[0].isnumeric():
                 packnum: int = ctx.input[0]
-            emojiset = ctx.input[0]
+            else:
+                emojiset = ctx.input[0]
 
         if emojiset is not None:
             setas = set_emoji
